@@ -73,15 +73,29 @@ struct TVec2
 		Set(v[0] - rhs.v[0], v[1] - rhs.v[1]);
 	}
 
+	inline void operator*=(T r) {
+		Set(v[0] * r, v[1] * r);
+	}
+
+	inline void operator/=(T r) {
+		Set(v[0] / r, v[1] / r);
+	}
+
 	inline T dot(TVec2 const & rhs) const {
-		T ret;
-		ret = x * rhs.x + y * rhs.y;
+		T ret = x * rhs.x + y * rhs.y;
 		return ret;
 	}
 
 	inline void transformBy(T const * pM) {
 		x = x * pM[0] + y * pM[2];
 		y = x * pM[1] + y * pM[3];
+	}
+
+	inline T length() const {
+		T sqr = dot(*this);
+		if (sqr < 1e-6f)
+			return 0;
+		return sqrtf(sqr);
 	}
 };
 
@@ -153,6 +167,14 @@ struct TVec3
 		Set(v[0] - rhs.v[0], v[1] - rhs.v[1], v[2] - rhs.v[2]);
 	}
 
+	inline void operator*=(T r) {
+		Set(v[0] * r, v[1] * r, v[2] * r);
+	}
+
+	inline void operator/=(T r) {
+		Set(v[0] / r, v[1] / r, v[2] / r);
+	}
+
 	void transformBy(T const * pM) {
 		x = x * pM[0] + y * pM[3] + z * pM[6] + pM[9];
 		y = x * pM[1] + y * pM[4] + z * pM[7] + pM[10];
@@ -160,9 +182,24 @@ struct TVec3
 	}
 
 	inline T dot(TVec3 const & rhs) const {
-		T ret;
-		ret = x * rhs.x + y * rhs.y + z * rhs.z;
-		return std::move(ret);
+		T ret = x * rhs.x + y * rhs.y + z * rhs.z;
+		return ret;
+	}
+
+	inline T length() const {
+		T sqr = dot(*this);
+		if (sqr < 1e-6f)
+			return 0;
+		return sqrtf(sqr);
+	}
+
+	inline TVec3 & normalize() {
+		T len = length();
+		if (len > 1e-6f) {
+			T inv = 1.f / len;
+			*this *= inv;
+		}
+		return *this;
 	}
 };
 
@@ -227,6 +264,14 @@ struct TVec4
 		Set(v[0] - rhs.v[0], v[1] - rhs.v[1], v[2] - rhs.v[2], v[3] - rhs.v[3]);
 	}
 
+	inline void operator*=(T r) {
+		Set(v[0] * r, v[1] * r, v[2] * r, v[3] * r);
+	}
+
+	inline void operator/=(T r) {
+		Set(v[0] / r, v[1] / r, v[2] / r, v[3] / r);
+	}
+
 	void transformBy(T const * pM) {
 		x = x * pM[0] + y * pM[4] + z * pM[8] + pM[12];
 		y = x * pM[1] + y * pM[5] + z * pM[9] + pM[13];
@@ -235,9 +280,24 @@ struct TVec4
 	}
 
 	inline T dot(TVec4 const & rhs) const {
-		T ret;
-		ret = x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
-		return std::move(ret);
+		T ret = x * rhs.x + y * rhs.y + z * rhs.z + w * rhs.w;
+		return ret;
+	}
+
+	inline T length() const {
+		T sqr = dot(*this);
+		if (sqr < 1e-6f)
+			return 0;
+		return sqrtf(sqr);
+	}
+
+	inline TVec4 & normalize() {
+		T len = length();
+		if (len > 1e-6f) {
+			T inv = 1.f / len;
+			*this *= inv;
+		}
+		return *this;
 	}
 };
 
