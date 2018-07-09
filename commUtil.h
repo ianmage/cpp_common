@@ -84,3 +84,6 @@ inline size_t HashObj(U const & pObj)
 
 	return HashRange(myBegin, myEnd);
 }
+
+
+#define ArrayCount(x)	sizeof(x)/sizeof((x)[0])
