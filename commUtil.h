@@ -86,4 +86,4 @@ inline size_t HashObj(U const & pObj)
 }
 
 
-#define ArrayCount(x)	sizeof(x)/sizeof((x)[0])
+#define ArrayCount(x)	(sizeof(x) / sizeof((x)[0]))
