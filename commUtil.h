@@ -1,6 +1,27 @@
 #pragma once
 
-#define PRIME_NUM 0x9e3779b9
+#ifdef _MSC_VER
+template <size_t N>
+struct EnsureConst
+{
+	static const size_t value = N;
+};
+#endif
+
+// #define PRIME_NUM 0x9e3779b9
+
+constexpr size_t PrimeNum()
+{
+	// UINT32_MAX * 0.61803398875 + 0.5
+	return sizeof(size_t) == 4
+		? 0x9e3779b9 : 0x9e3779b97f681800;
+}
+
+#ifdef _MSC_VER
+#define PRIME_NUM	(EnsureConst<PrimeNum()>::value)
+#else
+#define PRIME_NUM	(PrimeNum())
+#endif
 
 
 constexpr size_t _Hash(char const * str, size_t seed)
@@ -9,15 +30,9 @@ constexpr size_t _Hash(char const * str, size_t seed)
 }
 
 #ifdef _MSC_VER
-template <size_t N>
-struct EnsureConst
-{
-	static const size_t value = N;
-};
-
-#define CT_HASH(x) (EnsureConst<_Hash(x, 0)>::value)
+#define CT_HASH(x)	(EnsureConst<_Hash(x, 0)>::value)
 #else
-#define CT_HASH(x) (_Hash(x, 0))
+#define CT_HASH(x)	(_Hash(x, 0))
 #endif
 
 
