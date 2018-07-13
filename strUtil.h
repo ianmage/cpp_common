@@ -2,23 +2,38 @@
 
 #include <string>
 
-
-inline bool startsWith(std::string const & mainStr, std::string const & toMatch)
+constexpr bool strStartsWith(char const * mainStr, char const * toMatch)
 {
-	if (mainStr.length() >= toMatch.length())
-		return 0 == mainStr.compare(0, toMatch.length(), toMatch);
-	return false;
+	int idx = 0;
+	bool ret = true;
+	while (toMatch[idx]) {
+		if (toMatch[idx] != mainStr[idx]) {
+			ret = false;
+			break;
+		}
+		++idx;
+	}
+	return ret;
 }
 
-inline bool endsWith(std::string const & mainStr, std::string const & toMatch)
+constexpr uint32_t StrLength(char const * s)
 {
-	if (mainStr.length() >= toMatch.length())
-		return 0 == mainStr.compare(mainStr.length() - toMatch.length(), toMatch.length(), toMatch);
-	return false;
+	uint32_t ret = 0;
+	while (*(s++))
+		++ret;
+	return ret;
+}
+
+constexpr bool strEndsWith(char const * mainStr, char const * toMatch)
+{
+	uint32_t const mainLen = StrLength(mainStr);
+	uint32_t const matchLen = StrLength(toMatch);
+	return mainLen >= matchLen &&
+		strStartsWith(&mainStr[mainLen - matchLen], toMatch);
 }
 
 
-inline void replace(std::string & src, std::string const & find, std::string const & rep)
+inline void strReplace(std::string & src, std::string const & find, std::string const & rep)
 {
 	for (size_t i = 0; (i = src.find(find, i)) != std::string::npos; i += rep.length())
 		src.replace(i, find.length(), rep);
