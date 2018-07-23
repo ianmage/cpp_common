@@ -4,6 +4,10 @@
 
 constexpr bool strStartsWith(char const * mainStr, char const * toMatch)
 {
+	if (!toMatch)
+		return true;
+	if (!mainStr)
+		return false;
 	int idx = 0;
 	bool ret = true;
 	while (toMatch[idx]) {
@@ -26,6 +30,10 @@ constexpr uint32_t StrLength(char const * s)
 
 constexpr bool strEndsWith(char const * mainStr, char const * toMatch)
 {
+	if (!toMatch)
+		return true;
+	if (!mainStr)
+		return false;
 	uint32_t const mainLen = StrLength(mainStr);
 	uint32_t const matchLen = StrLength(toMatch);
 	return mainLen >= matchLen &&
