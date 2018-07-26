@@ -20,6 +20,13 @@ constexpr bool strStartsWith(char const * mainStr, char const * toMatch)
 	return ret;
 }
 
+
+inline bool strStartsWith(std::string const & mainStr, char const * toMatch)
+{
+	return strStartsWith(mainStr.c_str(), toMatch);
+}
+
+
 constexpr uint32_t StrLength(char const * s)
 {
 	uint32_t ret = 0;
@@ -27,6 +34,7 @@ constexpr uint32_t StrLength(char const * s)
 		++ret;
 	return ret;
 }
+
 
 constexpr bool strEndsWith(char const * mainStr, char const * toMatch)
 {
@@ -38,6 +46,12 @@ constexpr bool strEndsWith(char const * mainStr, char const * toMatch)
 	uint32_t const matchLen = StrLength(toMatch);
 	return mainLen >= matchLen &&
 		strStartsWith(&mainStr[mainLen - matchLen], toMatch);
+}
+
+
+inline bool strEndsWith(std::string const & mainStr, char const * toMatch)
+{
+	return strEndsWith(mainStr.c_str(), toMatch);
 }
 
 
