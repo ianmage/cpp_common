@@ -26,6 +26,11 @@ inline bool strStartsWith(std::string const & mainStr, char const * toMatch)
 	return strStartsWith(mainStr.c_str(), toMatch);
 }
 
+inline bool strStartsWith(std::string const & mainStr, std::string const & toMatch)
+{
+	return strStartsWith(mainStr.c_str(), toMatch.c_str());
+}
+
 
 constexpr uint32_t StrLength(char const * s)
 {
