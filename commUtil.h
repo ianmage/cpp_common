@@ -102,3 +102,11 @@ inline size_t HashObj(U const & pObj)
 
 
 #define ArrayCount(x)	(sizeof(x) / sizeof((x)[0]))
+
+
+#define SafeDelete(x)	{ \
+	if (x) { \
+		delete x; \
+		x = nullptr; \
+	} \
+}

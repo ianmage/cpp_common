@@ -29,7 +29,7 @@ struct JsonReader : public JsonReaderBase
 };
 
 
-JsonWriter::JsonWriter()
+inline JsonWriter::JsonWriter()
  : JsonWriterBase(strBuf)
 {
 	SetIndent('\t', 1);
@@ -37,7 +37,7 @@ JsonWriter::JsonWriter()
 }
 
 
-void JsonWriter::Save(std::string _fPath)
+inline void JsonWriter::Save(std::string _fPath)
 {
 	_fPath += ".json";
 
@@ -49,7 +49,7 @@ void JsonWriter::Save(std::string _fPath)
 }
 
 
-bool JsonReader::Load(std::string _fPath)
+inline bool JsonReader::Load(std::string _fPath)
 {
 	_fPath += ".json";
 
