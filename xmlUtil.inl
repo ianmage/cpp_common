@@ -1,4 +1,4 @@
-
+/*
 inline bool CopyNode(tinyxml2::XMLNode *pDstParent, tinyxml2::XMLNode const *pSrcNode)
 {
 	// Protect from evil
@@ -25,9 +25,17 @@ inline tinyxml2::XMLElement* NewXmlChild(tinyxml2::XMLElement *pNode, char const
 	pNode->LinkEndChild(pElm);
 	return pElm;
 }
+*/
 
 
-inline void NextElement(tinyxml2::XMLElement* &pElem)
+inline pugi::char_t const * GetChildText(pugi::xml_node node, char const * name)
 {
-	pElem = pElem->NextSiblingElement(pElem->Name());
+	return node.child(name).text().as_string();
+}
+
+
+inline pugi::xml_node& NextSiblingNode(pugi::xml_node &node)
+{
+	node = node.next_sibling(node.name());
+	return node;
 }
