@@ -44,25 +44,25 @@ struct TVec2
 	inline TVec2 operator+(TVec2 const & rhs) const {
 		TVec2 ret;
 		ret.Set(v[0] + rhs.v[0], v[1] + rhs.v[1]);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec2 operator-(TVec2 const & rhs) const {
 		TVec2 ret;
 		ret.Set(v[0] - rhs.v[0], v[1] - rhs.v[1]);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec2 operator*(T m) const {
 		TVec2 ret;
 		ret.Set(v[0] * m, v[1] * m);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec2 operator/(T m) const {
 		TVec2 ret;
 		ret.Set(v[0] / m, v[1] / m);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline void operator+=(TVec2 const & rhs) {
@@ -138,25 +138,25 @@ struct TVec3
 	inline TVec3 operator+(TVec3 const & rhs) const {
 		TVec3 ret;
 		ret.Set(v[0] + rhs.v[0], v[1] + rhs.v[1], v[2] + rhs.v[2]);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec3 operator-(TVec3 const & rhs) const {
 		TVec3 ret;
 		ret.Set(v[0] - rhs.v[0], v[1] - rhs.v[1], v[2] - rhs.v[2]);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec3 operator*(T m) const {
 		TVec3 ret;
 		ret.Set(v[0] * m, v[1] * m, v[2] * m);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline TVec3 operator/(T m) const {
 		TVec3 ret;
 		ret.Set(v[0] / m, v[1] / m, v[2] / m);
-		return std::move(ret);
+		return ret;
 	}
 
 	inline void operator+=(TVec3 const & rhs) {
@@ -356,7 +356,7 @@ struct TRect
 	inline DataType Size() const {
 		DataType ret;
 		ret.Set( Width(), Height() );
-		return std::move(ret);
+		return ret;
 	}
 	inline DataType Center() const {
 		assert(!IsEmpty());
@@ -419,7 +419,7 @@ struct Box
 	inline Vector3 Size() const {
 		Vector3 ret;
 		ret.Set(Width(), Height(), Depth());
-		return std::move(ret);
+		return ret;
 	}
 	inline Vector3 Center() const {
 		assert(!IsEmpty());
