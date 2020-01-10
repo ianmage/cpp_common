@@ -1,16 +1,20 @@
 #pragma once
 
 #include "winUtil.h"
-#include <string>
+#ifdef WIN32
+#define _X86_
+#else
 #define _AMD64_
+#endif
 #include <debugapi.h>
 
 
 void ConsoleWriteLn(char const * s, size_t len)
 {
+	size_t retVal;
 #ifdef UNICODE
 	std::wstring wc(len + 1, L'\n');
-	mbstowcs(&wc[0], s, len);
+	mbstowcs_s(&retVal, &wc[0], wc.size(), s, len);
 	::OutputDebugString(wc.c_str());
 #else
 	std::string c(len + 1, L'\n');
