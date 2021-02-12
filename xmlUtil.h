@@ -12,4 +12,4 @@ inline pugi::char_t const * GetChildText(pugi::xml_node node, char const * name)
 inline pugi::xml_node& NextSiblingNode(pugi::xml_node &node);
 
 
-#include "xmlUtil.inl"
+#include "XmlUtil.inl"

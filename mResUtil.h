@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "mathUtil.h"
+#include "MathUtil.h"
 
 
 void splitData(std::string strData, std::vector<float> & data, std::string const & delimit);

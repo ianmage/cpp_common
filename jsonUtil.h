@@ -1,11 +1,11 @@
 #pragma once
 
-#include <stdio.h>
+#include <cstdio>
 #include <boost/filesystem.hpp>
 #define RAPIDJSON_HAS_STDSTRING	1
 #define RAPIDJSON_HAS_CXX11_RVALUE_REFS	1
-#include "rapidjson/prettywriter.h"
-#include "rapidjson/document.h"
+#include <rapidjson/prettywriter.h>
+#include <rapidjson/document.h>
 
 
 typedef rapidjson::PrettyWriter<rapidjson::StringBuffer>	JsonWriterBase;
